@@ -22,7 +22,7 @@ This checklist provides a structured roadmap to redesign [Next Level Chess](http
 
 ## 🎨 Phase 3: High-Converting Design & Layout
 
-- [ ] **Simplify the Header:** Remove the standard navigation menu (Blog, About, etc.) to prevent users from "leaking" away from the offer.
+- [ ] **Sticky Navbar:** Include the navigation bar from the main nextlevelchess.com site. It should be sticky, with the "NEXT LEVEL CHESS" brand on the left, center links for "Courses" (dropdown with "The Simplified Chess Improvement System" and "Reach 1200 Elo"), "Articles", and "About me", and a "Get my Free eBook" button on the right that smooth-scrolls to the hero email opt-in. Include a responsive mobile hamburger menu.
 - [ ] **Implement Proven Layouts:** Choose a structure like "Headline + Image + 3 Bullet Points + Form".
 - [ ] **Social Proof Wall:** Move the "5.0 star" ratings and specific student testimonials "above the fold".
 - [ ] **Visual Hook:** Add a high-quality mockup of the "Simplified Chess Improvement System" or a video of GM Noël Studer teaching.
