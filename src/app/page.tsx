@@ -54,6 +54,164 @@ function ArrowRightIcon() {
   );
 }
 
+// ─── Navbar ─────────────────────────────────────────────────────────────────
+function Navbar() {
+  const [coursesOpen, setCoursesOpen] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
+
+  return (
+    <nav className="sticky top-0 z-40 border-b border-gray-200 bg-surface/95 backdrop-blur-sm">
+      <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
+        {/* Brand */}
+        <a
+          href="https://nextlevelchess.com"
+          className="text-lg font-extrabold uppercase tracking-wider text-foreground"
+        >
+          Next Level Chess
+        </a>
+
+        {/* Desktop nav links */}
+        <div className="hidden items-center gap-8 md:flex">
+          {/* Courses dropdown */}
+          <div className="relative">
+            <button
+              onClick={() => setCoursesOpen(!coursesOpen)}
+              onBlur={() => setTimeout(() => setCoursesOpen(false), 150)}
+              className="flex items-center gap-1 text-sm font-medium text-foreground transition-colors hover:text-accent"
+            >
+              Courses
+              <svg
+                className={`h-4 w-4 transition-transform ${coursesOpen ? "rotate-180" : ""}`}
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth={2}
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M19 9l-7 7-7-7"
+                />
+              </svg>
+            </button>
+            {coursesOpen && (
+              <div className="absolute left-0 top-full mt-2 w-72 rounded-lg border border-border bg-surface p-2 shadow-xl">
+                <a
+                  href="https://courses.nextlevelchess.blog/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block rounded-md px-4 py-3 text-sm transition-colors hover:bg-accent-light"
+                >
+                  <p className="font-semibold text-foreground">
+                    The Simplified Chess Improvement System
+                  </p>
+                </a>
+                <a
+                  href="https://courses.nextlevelchess.blog/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block rounded-md px-4 py-3 text-sm transition-colors hover:bg-accent-light"
+                >
+                  <p className="font-semibold text-foreground">
+                    Reach 1200 Elo
+                  </p>
+                </a>
+              </div>
+            )}
+          </div>
+
+          <a
+            href="https://nextlevelchess.com/articles"
+            className="text-sm font-medium text-foreground transition-colors hover:text-accent"
+          >
+            Articles
+          </a>
+          <a
+            href="https://nextlevelchess.com/about-me"
+            className="text-sm font-medium text-foreground transition-colors hover:text-accent"
+          >
+            About me
+          </a>
+        </div>
+
+        {/* CTA button + mobile hamburger */}
+        <div className="flex items-center gap-4">
+          <a
+            href="#get-ebook"
+            className="rounded-full border-2 border-foreground px-5 py-2 text-sm font-semibold text-foreground transition-colors hover:bg-foreground hover:text-white"
+            onClick={(e) => {
+              e.preventDefault();
+              document
+                .getElementById("hero-email")
+                ?.scrollIntoView({ behavior: "smooth" });
+              document.getElementById("hero-email")?.focus();
+            }}
+          >
+            Get my Free eBook
+          </a>
+
+          {/* Mobile hamburger */}
+          <button
+            onClick={() => setMobileOpen(!mobileOpen)}
+            className="md:hidden"
+            aria-label="Toggle menu"
+          >
+            <svg
+              className="h-6 w-6 text-foreground"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              strokeWidth={2}
+            >
+              {mobileOpen ? (
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              ) : (
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
+              )}
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      {/* Mobile menu */}
+      {mobileOpen && (
+        <div className="border-t border-border bg-surface px-6 py-4 md:hidden">
+          <div className="flex flex-col gap-4">
+            <a
+              href="https://courses.nextlevelchess.blog/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sm font-medium text-foreground hover:text-accent"
+            >
+              Courses
+            </a>
+            <a
+              href="https://nextlevelchess.com/articles"
+              className="text-sm font-medium text-foreground hover:text-accent"
+            >
+              Articles
+            </a>
+            <a
+              href="https://nextlevelchess.com/about-me"
+              className="text-sm font-medium text-foreground hover:text-accent"
+            >
+              About me
+            </a>
+          </div>
+        </div>
+      )}
+    </nav>
+  );
+}
+
 // ─── Hero Section ───────────────────────────────────────────────────────────
 function HeroSection() {
   const [email, setEmail] = useState("");
@@ -129,6 +287,7 @@ function HeroSection() {
                 }}
               >
                 <input
+                  id="hero-email"
                   type="email"
                   placeholder="Enter your email"
                   value={email}
@@ -798,6 +957,7 @@ function Footer() {
 export default function Home() {
   return (
     <>
+      <Navbar />
       <HeroSection />
       <BenefitStack />
       <AuthoritySection />
